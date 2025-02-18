@@ -17,16 +17,16 @@ return new class extends Migration
             $table->id(); // unsignedBigInteger
             $table->string('nombre', 150);
             $table->string('descripcion', 150);
-            $table->integer('precio');
+            $table->decimal('precio', 10, 2); //10 nº enteros máximos, 2 decimales maximos
             $table->string('imagen');
-            $table->unsignedBigInteger('categoria'); // unsignedBigInteger
-            $table->index('categoria');
+            $table->unsignedBigInteger('categoria_id'); // unsignedBigInteger
+            $table->index('categoria_id');
             $table->timestamps();
             
-            $table->foreign('categoria')
-                  ->references('id_categorias')
-                  ->on('categorias')
-                  ->onDelete('restrict');
+            $table->foreign('categoria_id')
+                ->references('id_categorias')
+                ->on('categorias')
+                ->onDelete('restrict');
         });        
     }
 
